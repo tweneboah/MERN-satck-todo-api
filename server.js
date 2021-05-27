@@ -1,33 +1,17 @@
+const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config();
-const cors = require('cors');
-const express = require('express');
 const { dbConnect } = require('./config/dbConnect');
-const { todoRoutes } = require('./routes/todoRoutes');
-const {
-  notFound,
-  errorHandler,
-} = require('./middleware/errorMiddlewareHandler');
-dbConnect();
-
+const { route } = require('./routes/todoRoute');
 const app = express();
 
-//===========================================================
+//dbConnect
+dbConnect();
+
 //Middleware
-//===========================================================
-app.use(cors());
 app.use(express.json());
-
-//===============================
-// Routes
-//===============================
-app.use('/api/', todoRoutes);
-
-//Error handlers
-// //============================
-app.use(notFound);
-app.use(errorHandler);
-
+//Routes
+app.use('/api', route);
+//Server
 const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, console.log('Server is running'));
+app.listen(PORT, console.log(`listening on port ${PORT}`));

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const dbConnect = async () => {
   try {
     const connected = await mongoose.connect(
-      'mongodb+srv://church:JOPFomdqwf3F9wM8@my-church-demo.1rtsv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+      'mongodb+srv://todo:Kcu63T1skcAZAg0G@todo-mern.jndha.mongodb.net/todo-mern?retryWrites=true&w=majority',
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -11,11 +11,9 @@ const dbConnect = async () => {
         useFindAndModify: false,
       }
     );
-
-    console.log(`MongoDB Connected ${connected.connection.host}`);
+    console.log(`MongoDb Connected successfully`);
   } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit();
+    console.log(`Error occurred, ${error.message}`);
   }
 };
 
